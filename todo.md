@@ -3,7 +3,7 @@
 ## Core Features
 - [x] Landing page with hero section featuring SR AI branding
 - [x] Logo display (SR AI logo)
-- [x] Update app name from Titan AI to SR AI
+- [x] Confirm app name is SR AI
 - [x] Tagline: "Your AI Super App"
 - [x] Subtitle: "Experience the power of AI with our comprehensive suite of tools"
 - [x] Sign In with Manus button (OAuth integration)
