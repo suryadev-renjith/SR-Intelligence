@@ -34,6 +34,12 @@ describe("SR AI response speed helpers", () => {
     expect(getInstantResponse("Who created you?")).toBe(
       "I am created by Suryadev Renjith."
     );
+    expect(getInstantResponse("Were you trained by Google?")).toBe(
+      "No. I was created and trained by Suryadev Renjith."
+    );
+    expect(getInstantResponse("Who made this app?")).toBe(
+      "No. I was created and trained by Suryadev Renjith."
+    );
     expect(
       getInstantResponse("Who is Suryadev Renjith's tuition teacher?")
     ).toBe("Bhagya Venugopal.");
