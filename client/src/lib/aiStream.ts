@@ -1,4 +1,4 @@
-export type StreamMode = "chatbot" | "tutor" | "writing";
+export type StreamMode = "chatbot" | "tutor" | "writing" | "quiz";
 
 export type StreamMessage = {
   role: "user" | "assistant";
