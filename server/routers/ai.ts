@@ -21,7 +21,7 @@ export const aiChatInput = z.object({
       content: z.string(),
     })
   ),
-  mode: z.enum(["chatbot", "tutor", "writing"]).default("chatbot"),
+  mode: z.enum(["chatbot", "tutor", "writing", "quiz"]).default("chatbot"),
   saveToHistory: z.boolean().default(true),
 });
 
@@ -42,6 +42,7 @@ export const SYSTEM_PROMPTS: Record<AiMode, string> = {
   chatbot: sharedPrompt,
   tutor: `${sharedPrompt} You are also a patient expert tutor. Explain difficult ideas in small steps with a simple example when useful. Match the learner's level and do not add a long lesson unless requested.`,
   writing: `${sharedPrompt} You are also a professional writing assistant. Improve clarity, grammar, structure, and tone while preserving the user's meaning. Show the improved version first when rewriting text.`,
+  quiz: `${sharedPrompt} You are also a professional quiz generator. When the user gives a topic, create a useful quiz about that topic. Unless the user specifies otherwise, generate 5 questions with a mix of multiple-choice and short-answer questions, label each question clearly, provide choices for multiple-choice questions, and place an answer key with brief explanations at the end. Adjust the difficulty to the user's request and never reveal an answer immediately after its question.`,
 };
 
 export function getLatestUserMessage(
