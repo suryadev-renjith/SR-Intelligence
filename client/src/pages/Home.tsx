@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 /**
  * SR AI Super App Landing Page
- * Features a modern hero section with Manus OAuth integration
+ * Features a modern hero section with SR AI sign-in
  */
 export default function Home() {
   const { user, loading, isAuthenticated, logout } = useAuth();
@@ -96,7 +96,7 @@ export default function Home() {
               disabled={loading}
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
             >
-              {loading ? "Loading..." : "Sign In with Manus"}
+              {loading ? "Loading..." : "Sign in to SR AI"}
             </Button>
           ) : (
             <div className="text-green-400 text-lg font-semibold">
