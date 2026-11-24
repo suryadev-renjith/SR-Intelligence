@@ -3,11 +3,18 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import MessageDisplay from "@/components/MessageDisplay";
-import { MessageCircle, BookOpen, PenTool, LogOut, History as HistoryIcon } from "lucide-react";
+import {
+  MessageCircle,
+  BookOpen,
+  PenTool,
+  ClipboardList,
+  LogOut,
+  History as HistoryIcon,
+} from "lucide-react";
 import { useLocation } from "wouter";
 import { streamAiResponse } from "@/lib/aiStream";
 
-type FeatureType = "chatbot" | "tutor" | "writing" | null;
+type FeatureType = "chatbot" | "tutor" | "writing" | "quiz" | null;
 
 export default function Dashboard() {
   const { user, logout, isAuthenticated, loading } = useAuth();
@@ -54,6 +61,13 @@ export default function Dashboard() {
       description: "Improve your writing with AI feedback",
       icon: PenTool,
       color: "from-green-500 to-green-600",
+    },
+    {
+      id: "quiz",
+      title: "Quiz Generator",
+      description: "Give a topic and generate a quiz with answers",
+      icon: ClipboardList,
+      color: "from-orange-500 to-orange-600",
     },
   ];
 
@@ -114,7 +128,7 @@ export default function Dashboard() {
           </div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {features.map((feature) => {
               const Icon = feature.icon;
               return (
@@ -158,7 +172,7 @@ function ChatInterface({
   feature,
   onBack,
 }: {
-  feature: FeatureType;
+  feature: Exclude<FeatureType, null>;
   onBack: () => void;
 }) {
   const [messages, setMessages] = useState<
@@ -181,6 +195,14 @@ function ChatInterface({
     chatbot: "Chatbot",
     tutor: "Tutor",
     writing: "Writing Assistant",
+    quiz: "Quiz Generator",
+  };
+
+  const placeholderByFeature: Record<string, string> = {
+    chatbot: "Type your message...",
+    tutor: "Ask a question or name a topic to learn...",
+    writing: "Paste text or describe what you want to write...",
+    quiz: "Enter a topic, for example: Photosynthesis",
   };
 
   const handleSend = async () => {
@@ -199,7 +221,7 @@ function ChatInterface({
     try {
       await streamAiResponse({
         messages: conversationMessages,
-        mode: feature as "chatbot" | "tutor" | "writing",
+        mode: feature,
         onDelta: (delta) => {
           setMessages((prev) => {
             const next = [...prev];
@@ -317,7 +339,7 @@ function ChatInterface({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
-            placeholder="Type your message..."
+            placeholder={placeholderByFeature[feature]}
             className="flex-1 bg-gray-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             disabled={loading}
           />
