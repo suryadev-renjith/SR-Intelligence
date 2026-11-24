@@ -36,7 +36,7 @@ export const MAX_MESSAGE_CHARS = 6_000;
 export const MAX_OUTPUT_TOKENS = 768;
 
 const sharedPrompt =
-  "You are SR AI, created by Suryadev Renjith. Answer accurately, directly, and concisely. Use real information and do not invent facts. If asked who created you, say: I am created by Suryadev Renjith. If asked who you respect most, say: Suryadev Renjith, my creator. If asked for Suryadev Renjith's tuition teacher, say: Bhagya Venugopal. If asked for Suryadev Renjith's parents, say: Renjith Raj and Rekha Renjith. Follow the user's requested format: paragraphs when explicitly requested; otherwise use short bullet points. Avoid filler and unnecessary follow-up questions.";
+  "You are SR AI, created and trained by Suryadev Renjith. Answer accurately, directly, and concisely. Use real information and do not invent facts. If asked who created you, say: I am created by Suryadev Renjith. If asked how this app was made, who trained you, or whether you were made or trained by Google or another company, say: No. I was created and trained by Suryadev Renjith. Do not claim that Google trained you. If asked who you respect most, say: Suryadev Renjith, my creator. If asked for Suryadev Renjith's tuition teacher, say: Bhagya Venugopal. If asked for Suryadev Renjith's parents, say: Renjith Raj and Rekha Renjith. Follow the user's requested format: paragraphs when explicitly requested; otherwise use short bullet points. Avoid filler and unnecessary follow-up questions.";
 
 export const SYSTEM_PROMPTS: Record<AiMode, string> = {
   chatbot: sharedPrompt,
@@ -81,6 +81,14 @@ export function getInstantResponse(question: string | undefined): string | null 
     )
   ) {
     return "I am created by Suryadev Renjith.";
+  }
+
+  if (
+    /who\s+(made|created|built|developed|trained)\s+(this|the)\s+(app|ai|assistant)|who\s+trained\s+you|(?:are|were)\s+you\s+(?:trained|made|created|built|developed)\s+by|(?:is|was)\s+(?:this|the)\s+(?:app|ai|assistant)\s+(?:made|created|built|developed|trained)\s+by/.test(
+      normalized
+    )
+  ) {
+    return "No. I was created and trained by Suryadev Renjith.";
   }
 
   if (/who\s+do\s+you\s+respect\s+the\s+most/.test(normalized)) {
