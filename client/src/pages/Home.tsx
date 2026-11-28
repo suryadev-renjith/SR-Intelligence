@@ -41,7 +41,7 @@ export default function Home() {
       <header className="flex items-center justify-between px-6 py-4 md:px-12 md:py-6">
         <div className="flex items-center gap-3">
           <img
-            src="/manus-storage/sr-ai-logo_357a9169.png"
+            src="/manus-storage/Screenshot2026-11-2110.48.42AM_45fd7577.png"
             alt="SR AI logo"
             className="w-10 h-10 rounded-lg object-cover"
           />
@@ -68,7 +68,7 @@ export default function Home() {
           {/* Logo */}
           <div className="mb-8 flex justify-center">
             <img
-              src="/manus-storage/sr-ai-logo_357a9169.png"
+              src="/manus-storage/Screenshot2026-11-2110.48.42AM_45fd7577.png"
               alt="SR AI logo"
               className="w-28 h-28 rounded-2xl object-cover shadow-2xl"
             />
