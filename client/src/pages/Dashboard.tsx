@@ -86,7 +86,7 @@ export default function Dashboard() {
       <header className="flex items-center justify-between px-6 py-4 md:px-12 md:py-6 border-b border-gray-800">
         <div className="flex items-center gap-3">
           <img
-            src="/manus-storage/sr-ai-logo_357a9169.png"
+            src="/manus-storage/Screenshot2026-11-2110.48.42AM_45fd7577.png"
             alt="SR AI logo"
             className="w-10 h-10 rounded-lg object-cover"
           />
