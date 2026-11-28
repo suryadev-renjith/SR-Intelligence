@@ -8,4 +8,10 @@ describe("SR AI platform title", () => {
     expect(process.env.VITE_APP_TITLE ?? "SR AI").toBe("SR AI");
     expect(indexHtml).toContain("<title>SR AI</title>");
   });
+
+  it("uses the user-provided circular SR logo", () => {
+    expect(process.env.VITE_APP_LOGO).toBe(
+      "/manus-storage/Screenshot2026-11-2110.48.42AM_45fd7577.png"
+    );
+  });
 });
