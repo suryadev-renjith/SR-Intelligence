@@ -7,14 +7,13 @@ import {
   MessageCircle,
   BookOpen,
   PenTool,
-  ClipboardList,
   LogOut,
   History as HistoryIcon,
 } from "lucide-react";
 import { useLocation } from "wouter";
 import { streamAiResponse } from "@/lib/aiStream";
 
-type FeatureType = "chatbot" | "tutor" | "writing" | "quiz" | null;
+type FeatureType = "chatbot" | "tutor" | "writing" | null;
 
 export default function Dashboard() {
   const { user, logout, isAuthenticated, loading } = useAuth();
@@ -61,13 +60,6 @@ export default function Dashboard() {
       description: "Improve your writing with AI feedback",
       icon: PenTool,
       color: "from-green-500 to-green-600",
-    },
-    {
-      id: "quiz",
-      title: "Quiz Generator",
-      description: "Give a topic and generate a quiz with answers",
-      icon: ClipboardList,
-      color: "from-orange-500 to-orange-600",
     },
   ];
 
@@ -195,14 +187,12 @@ function ChatInterface({
     chatbot: "Chatbot",
     tutor: "Tutor",
     writing: "Writing Assistant",
-    quiz: "Quiz Generator",
   };
 
   const placeholderByFeature: Record<string, string> = {
     chatbot: "Type your message...",
     tutor: "Ask a question or name a topic to learn...",
     writing: "Paste text or describe what you want to write...",
-    quiz: "Enter a topic, for example: Photosynthesis",
   };
 
   const handleSend = async () => {
